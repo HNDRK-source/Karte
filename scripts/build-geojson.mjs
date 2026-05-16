@@ -12,6 +12,17 @@ const PRECISION = 3;
 
 const round = (n) => Math.round(n * 10 ** PRECISION) / 10 ** PRECISION;
 
+// Manuelle Verlagerungen zum Schutz besonders sensibler Standorte
+// (z. B. private Grundstücke, wo selbst eine 110-m-Unschärfe noch zu konkret wäre).
+// Schlüssel ist die BaumNr aus der Quelldatei, Wert ist [lon, lat] des Ersatzpunktes.
+const OVERRIDES = {
+  // Cecilienhof / Privatgrundstück → Straßendreieck "Am Pfingstberg", Potsdam
+  "U15 (1)": [13.058, 52.421],
+  "U16 (2)": [13.058, 52.421],
+  "U17 (3)": [13.058, 52.421],
+  "U19 (5)": [13.058, 52.421],
+};
+
 function parseCoords(s) {
   const cleaned = String(s).replace(/\t/g, "").trim();
   const m = cleaned.match(/(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/);
@@ -25,17 +36,25 @@ const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { defval: "" 
 const treeFeatures = rows
   .filter((r) => String(r["Historischer Baum"]).trim().toLowerCase() !== "ja")
   .map((r) => {
-    const ll = parseCoords(r["Ort GPS I iOS"]);
-    if (!ll) return null;
-    const [lat, lon] = ll;
+    const nr = String(r["BaumNr"]).trim();
+    const override = OVERRIDES[nr];
+    let coords;
+    if (override) {
+      coords = override;
+    } else {
+      const ll = parseCoords(r["Ort GPS I iOS"]);
+      if (!ll) return null;
+      const [lat, lon] = ll;
+      coords = [round(lon), round(lat)];
+    }
     return {
       type: "Feature",
       properties: {
         category: "ulme",
-        nr: String(r["BaumNr"]).trim(),
+        nr,
         art: String(r["Baumart"]).trim(),
       },
-      geometry: { type: "Point", coordinates: [round(lon), round(lat)] },
+      geometry: { type: "Point", coordinates: coords },
     };
   })
   .filter(Boolean);
