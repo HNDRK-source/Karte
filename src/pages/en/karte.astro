@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MapView from "../../components/MapView.astro";
+import { t } from "../../i18n/ui";
+const lang = "en" as const;
+---
+<BaseLayout lang={lang} title={t(lang, "nav.karte")} description="Interactive map of registered elm trees.">
+  <section class="container-wide py-8">
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">{t(lang, "nav.karte")}</h1>
+    <p class="mt-3 max-w-prose text-ulme-800">Inventory, vaccinations and reports. Click a marker for details.</p>
+  </section>
+  <MapView lang={lang} />
+</BaseLayout>

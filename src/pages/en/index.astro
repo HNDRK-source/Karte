@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t, routes } from "../../i18n/ui";
+const lang = "en" as const;
+const r = routes[lang];
+---
+<BaseLayout lang={lang} title={t(lang, "site.tagline")} description={t(lang, "home.hero.lead")}>
+  <section class="bg-ulme-50">
+    <div class="container-wide py-16 md:py-24">
+      <h1 class="font-serif text-4xl font-semibold md:text-5xl">{t(lang, "home.hero.title")}</h1>
+      <p class="mt-4 max-w-prose text-lg text-ulme-800">{t(lang, "home.hero.lead")}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="btn-primary" href={r.ulmenschutz}>{t(lang, "nav.ulmenschutz")}</a>
+        <a class="btn-secondary" href={r.karte}>{t(lang, "nav.karte")}</a>
+      </div>
+    </div>
+  </section>
+  <section class="container-wide grid gap-6 py-12 md:grid-cols-3">
+    <a href={r.ulmenkrankheit} class="block rounded-lg border border-ulme-100 p-6 no-underline transition hover:bg-ulme-50">
+      <h2 class="text-xl font-semibold">{t(lang, "home.path.learn.title")}</h2>
+      <p class="mt-2 text-ulme-800">{t(lang, "home.path.learn.text")}</p>
+    </a>
+    <a href={r.ulmenschutz} class="block rounded-lg border border-ulme-100 p-6 no-underline transition hover:bg-ulme-50">
+      <h2 class="text-xl font-semibold">{t(lang, "home.path.protect.title")}</h2>
+      <p class="mt-2 text-ulme-800">{t(lang, "home.path.protect.text")}</p>
+    </a>
+    <a href={r.mitmachen} class="block rounded-lg border border-ulme-100 p-6 no-underline transition hover:bg-ulme-50">
+      <h2 class="text-xl font-semibold">{t(lang, "home.path.join.title")}</h2>
+      <p class="mt-2 text-ulme-800">{t(lang, "home.path.join.text")}</p>
+    </a>
+  </section>
+</BaseLayout>

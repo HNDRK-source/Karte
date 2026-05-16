@@ -1,0 +1,17 @@
+---
+import { t, routes, type Lang } from "../i18n/ui";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const r = routes[lang];
+const year = new Date().getFullYear();
+---
+<footer class="mt-16 border-t border-ulme-100 bg-ulme-50">
+  <div class="container-wide flex flex-col gap-4 py-8 text-sm text-ulme-800 md:flex-row md:items-center md:justify-between">
+    <p>© {year} {t(lang, "site.title")}. {t(lang, "footer.rights")}</p>
+    <nav class="flex flex-wrap gap-4">
+      <a href={r.impressum} class="no-underline hover:underline">{t(lang, "nav.impressum")}</a>
+      <a href={r.datenschutz} class="no-underline hover:underline">{t(lang, "nav.datenschutz")}</a>
+      <a href={r.barrierefreiheit} class="no-underline hover:underline">{t(lang, "nav.barrierefreiheit")}</a>
+    </nav>
+  </div>
+</footer>
