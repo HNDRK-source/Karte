@@ -1,0 +1,38 @@
+# Deploy zu Strato via SFTP
+#
+# Aktivieren:
+#   1. In den GitHub-Repo-Settings unter "Secrets and variables → Actions" eintragen:
+#        STRATO_HOST       z. B. ssh.strato.de
+#        STRATO_USER       FTP-/SSH-Benutzer
+#        STRATO_PASSWORD   Passwort
+#        STRATO_REMOTE_DIR Zielpfad (z. B. /htdocs/  oder /)
+#   2. Den `if: false`-Guard unten entfernen.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    if: false  # Schutz: erst aktivieren, wenn Secrets gesetzt sind
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+      - name: Upload via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.STRATO_HOST }}
+          username: ${{ secrets.STRATO_USER }}
+          password: ${{ secrets.STRATO_PASSWORD }}
+          local_path: "./dist/*"
+          remote_path: ${{ secrets.STRATO_REMOTE_DIR }}
+          sftp_only: true
+          delete_remote_files: false

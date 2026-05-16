@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const all = await getCollection("pages", ({ data }) => data.lang === "de" && !data.draft);
+  return all.map((entry) => ({ params: { slug: entry.data.urlSlug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<BaseLayout lang="de" title={entry.data.title} description={entry.data.description}>
+  <article class="container-prose py-12">
+    <h1 class="font-serif text-3xl font-semibold md:text-4xl">{entry.data.title}</h1>
+    {entry.data.description && <p class="mt-3 text-lg text-ulme-800">{entry.data.description}</p>}
+    <div class="prose prose-ulme mt-8 max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

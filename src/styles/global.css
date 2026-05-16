@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-white text-ulme-900 font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif text-ulme-900;
+  }
+  a {
+    @apply text-ulme-700 underline-offset-2 hover:underline;
+  }
+}
+
+@layer components {
+  .container-prose {
+    @apply mx-auto max-w-prose px-4;
+  }
+  .container-wide {
+    @apply mx-auto max-w-5xl px-4;
+  }
+  .prose-page {
+    @apply prose prose-ulme max-w-none;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition;
+  }
+  .btn-primary {
+    @apply btn bg-ulme-600 text-white hover:bg-ulme-700 no-underline;
+  }
+  .btn-secondary {
+    @apply btn border border-ulme-300 bg-white text-ulme-800 hover:bg-ulme-50 no-underline;
+  }
+}
