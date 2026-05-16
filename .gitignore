@@ -7,3 +7,8 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+
+# Lokale Rohdaten (enthalten exakte GPS-Koordinaten privater Bäume).
+# Nur die unscharfe GeoJSON-Ausgabe in public/data/ wird committet.
+data/*.xlsx
+data/*.csv

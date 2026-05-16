@@ -26,6 +26,16 @@ public/
   favicon.svg
 ```
 
+## Kartendaten aktualisieren
+
+Die Rohdaten (Excel mit exakten GPS-Koordinaten) liegen lokal unter `data/` und werden **nicht** committet. Aus ihnen wird die öffentliche, **unscharfe** GeoJSON-Datei `public/data/ulmen.geojson` generiert:
+
+```bash
+npm run data:import
+```
+
+Das Skript `scripts/build-geojson.mjs` filtert historische Bäume aus, rundet Koordinaten auf 3 Nachkommastellen (≈ 110 m, Quartiers-Ebene) und ergänzt die Veranstaltungsorte.
+
 ## Inhalte pflegen
 
 Eine Markdown-Datei pro Sprache, gleicher `slug`. Frontmatter:

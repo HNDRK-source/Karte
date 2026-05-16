@@ -4,26 +4,194 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Beispiel-Ulme Hamburg",
-        "description": "Platzhalter – echter Datensatz folgt."
+        "category": "ulme",
+        "nr": "U10",
+        "art": "Ulme, Berg- (Ulmus glabra)"
       },
-      "geometry": { "type": "Point", "coordinates": [9.9937, 53.5511] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.024,
+          50.864
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Beispiel-Ulme München",
-        "description": "Platzhalter – echter Datensatz folgt."
+        "category": "ulme",
+        "nr": "U12",
+        "art": "Ulme, Berg- (Ulmus glabra)"
       },
-      "geometry": { "type": "Point", "coordinates": [11.5820, 48.1351] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.261,
+          50.817
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Beispiel-Ulme Leipzig",
-        "description": "Platzhalter – echter Datensatz folgt."
+        "category": "ulme",
+        "nr": "U14",
+        "art": "Ulme, Berg- (Ulmus glabra)"
       },
-      "geometry": { "type": "Point", "coordinates": [12.3731, 51.3397] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.953,
+          50.672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U15 (1)",
+        "art": "Ulme, Berg- (Ulmus glabra)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.067,
+          52.421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U16 (2)",
+        "art": "Ulme, Berg- (Ulmus glabra)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.067,
+          52.421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U17 (3)",
+        "art": "Ulme, Berg- (Ulmus glabra)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.067,
+          52.421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U19 (5)",
+        "art": "Ulme, Berg- (Ulmus glabra)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.067,
+          52.421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U20",
+        "art": "Ulme, Berg- (Ulmus glabra)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.023,
+          50.684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U21",
+        "art": "Ulmus glabra"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.292,
+          50.841
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "ulme",
+        "nr": "U5",
+        "art": "Ulme, Berg- (Ulmus glabra)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.527,
+          50.776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "veranstaltung",
+        "name": "Messe Augsburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.929,
+          48.354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "veranstaltung",
+        "name": "Gartenreich Wörlitz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.42,
+          51.844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "veranstaltung",
+        "name": "Schloss Cecilienhof Potsdam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.073,
+          52.418
+        ]
+      }
     }
   ]
 }
