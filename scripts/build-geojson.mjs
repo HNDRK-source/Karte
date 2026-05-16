@@ -18,10 +18,10 @@ const round = (n) => Math.round(n * 10 ** PRECISION) / 10 ** PRECISION;
 const OVERRIDES = {
   // Cecilienhof / Privatgrundstück → Straßendreieck
   // Am Pfingstberg / Höhenstraße / Große Weinmeisterstraße, Potsdam.
-  "U15 (1)": [13.063, 52.420],
-  "U16 (2)": [13.063, 52.420],
-  "U17 (3)": [13.063, 52.420],
-  "U19 (5)": [13.063, 52.420],
+  "U15 (1)": [13.06617, 52.42157],
+  "U16 (2)": [13.06617, 52.42157],
+  "U17 (3)": [13.06617, 52.42157],
+  "U19 (5)": [13.06617, 52.42157],
 };
 
 function parseCoords(s) {
