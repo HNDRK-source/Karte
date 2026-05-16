@@ -16,11 +16,12 @@ const round = (n) => Math.round(n * 10 ** PRECISION) / 10 ** PRECISION;
 // (z. B. private Grundstücke, wo selbst eine 110-m-Unschärfe noch zu konkret wäre).
 // Schlüssel ist die BaumNr aus der Quelldatei, Wert ist [lon, lat] des Ersatzpunktes.
 const OVERRIDES = {
-  // Cecilienhof / Privatgrundstück → Straßendreieck "Am Pfingstberg", Potsdam
-  "U15 (1)": [13.058, 52.421],
-  "U16 (2)": [13.058, 52.421],
-  "U17 (3)": [13.058, 52.421],
-  "U19 (5)": [13.058, 52.421],
+  // Cecilienhof / Privatgrundstück → Straßendreieck
+  // Am Pfingstberg / Höhenstraße / Große Weinmeisterstraße, Potsdam.
+  "U15 (1)": [13.063, 52.420],
+  "U16 (2)": [13.063, 52.420],
+  "U17 (3)": [13.063, 52.420],
+  "U19 (5)": [13.063, 52.420],
 };
 
 function parseCoords(s) {
