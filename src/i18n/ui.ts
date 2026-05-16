@@ -73,47 +73,65 @@ export function t(lang: Lang, key: keyof (typeof ui)["de"]): string {
   return ui[lang][key] ?? ui[defaultLang][key];
 }
 
+// Astro stellt BASE_URL als Konstante zur Verfügung (z. B. "/" oder "/Karte/").
+// Wir entfernen den abschließenden Slash, damit wir absolute Pfade einfach anhängen können.
+const B = (import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
+
+function r(lang: Lang, path: string): string {
+  const prefix = lang === "en" ? "/en" : "";
+  return B + prefix + path;
+}
+
 export const routes = {
   de: {
-    home: "/",
-    ulme: "/ulme/",
-    ulmenkrankheit: "/ulmenkrankheit/",
-    ulmenschutz: "/ulmenschutz/",
-    dutchtrig: "/dutchtrig/",
-    "fuer-kommunen": "/fuer-kommunen/",
-    "fuer-private": "/fuer-private/",
-    karte: "/karte/",
-    mitmachen: "/mitmachen/",
-    wissen: "/wissen/",
-    "ueber-uns": "/ueber-uns/",
-    impressum: "/impressum/",
-    datenschutz: "/datenschutz/",
-    barrierefreiheit: "/barrierefreiheit/",
+    home: r("de", "/"),
+    ulme: r("de", "/ulme/"),
+    ulmenkrankheit: r("de", "/ulmenkrankheit/"),
+    ulmenschutz: r("de", "/ulmenschutz/"),
+    dutchtrig: r("de", "/dutchtrig/"),
+    "fuer-kommunen": r("de", "/fuer-kommunen/"),
+    "fuer-private": r("de", "/fuer-private/"),
+    karte: r("de", "/karte/"),
+    mitmachen: r("de", "/mitmachen/"),
+    wissen: r("de", "/wissen/"),
+    "ueber-uns": r("de", "/ueber-uns/"),
+    impressum: r("de", "/impressum/"),
+    datenschutz: r("de", "/datenschutz/"),
+    barrierefreiheit: r("de", "/barrierefreiheit/"),
   },
   en: {
-    home: "/en/",
-    ulme: "/en/ulme/",
-    ulmenkrankheit: "/en/ulmenkrankheit/",
-    ulmenschutz: "/en/ulmenschutz/",
-    dutchtrig: "/en/dutchtrig/",
-    "fuer-kommunen": "/en/fuer-kommunen/",
-    "fuer-private": "/en/fuer-private/",
-    karte: "/en/karte/",
-    mitmachen: "/en/mitmachen/",
-    wissen: "/en/wissen/",
-    "ueber-uns": "/en/ueber-uns/",
-    impressum: "/en/impressum/",
-    datenschutz: "/en/datenschutz/",
-    barrierefreiheit: "/en/barrierefreiheit/",
+    home: r("en", "/"),
+    ulme: r("en", "/ulme/"),
+    ulmenkrankheit: r("en", "/ulmenkrankheit/"),
+    ulmenschutz: r("en", "/ulmenschutz/"),
+    dutchtrig: r("en", "/dutchtrig/"),
+    "fuer-kommunen": r("en", "/fuer-kommunen/"),
+    "fuer-private": r("en", "/fuer-private/"),
+    karte: r("en", "/karte/"),
+    mitmachen: r("en", "/mitmachen/"),
+    wissen: r("en", "/wissen/"),
+    "ueber-uns": r("en", "/ueber-uns/"),
+    impressum: r("en", "/impressum/"),
+    datenschutz: r("en", "/datenschutz/"),
+    barrierefreiheit: r("en", "/barrierefreiheit/"),
   },
-} as const;
-
-export function getLangFromUrl(url: URL): Lang {
-  const seg = url.pathname.split("/").filter(Boolean)[0];
-  if (seg === "en") return "en";
-  return "de";
-}
+};
 
 export function altLang(lang: Lang): Lang {
   return lang === "de" ? "en" : "de";
+}
+
+// Aktuellen Pfad in die jeweils andere Sprache übersetzen, base-aware.
+export function switchLang(currentPath: string, to: Lang): string {
+  const inner = currentPath.startsWith(B) ? currentPath.slice(B.length) : currentPath;
+  const isEn = inner === "/en" || inner.startsWith("/en/");
+  if (to === "en") {
+    if (isEn) return currentPath;
+    const path = inner === "/" || inner === "" ? "/" : inner;
+    return B + "/en" + path;
+  } else {
+    if (!isEn) return currentPath;
+    const stripped = inner.replace(/^\/en/, "") || "/";
+    return B + stripped;
+  }
 }

@@ -1,9 +1,11 @@
 ---
-import { t, routes, altLang, type Lang } from "../i18n/ui";
+import { t, routes, altLang, switchLang, type Lang } from "../i18n/ui";
 
 interface Props { lang: Lang; currentPath: string }
 const { lang, currentPath } = Astro.props;
 const r = routes[lang];
+const other = altLang(lang);
+const otherHref = switchLang(currentPath, other);
 
 const navItems = [
   { href: r.ulme,           label: t(lang, "nav.ulme") },
@@ -18,12 +20,6 @@ const navItems = [
   { href: r["ueber-uns"],   label: t(lang, "nav.ueberuns") },
 ];
 
-const other = altLang(lang);
-const otherHref = currentPath.startsWith("/en/")
-  ? currentPath.replace(/^\/en\//, "/")
-  : currentPath === "/en"
-    ? "/"
-    : "/en" + (currentPath.startsWith("/") ? currentPath : "/" + currentPath);
 ---
 <header class="border-b border-ulme-100 bg-white">
   <div class="container-wide flex flex-wrap items-center justify-between gap-4 py-4">
